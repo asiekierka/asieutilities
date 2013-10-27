@@ -53,7 +53,15 @@ public class BoneMealClassTransformer extends ClassTransformer implements IClass
 			dyeClass.fields.add(new FieldNode(Opcodes.ACC_PUBLIC + Opcodes.ACC_STATIC, "treeChance", "D", null, null));
 			dyeClass.fields.add(new FieldNode(Opcodes.ACC_PUBLIC + Opcodes.ACC_STATIC, "mushroomChance", "D", null, null));
 			dyeClass.fields.add(new FieldNode(Opcodes.ACC_PUBLIC + Opcodes.ACC_STATIC, "growthChanger", "I", null, null));
-			MethodNode method = getMethod(dyeClass, "applyBonemeal", "(Lnet/minecraft/item/ItemStack;Lnet/minecraft/world/World;IIILnet/minecraft/entity/player/EntityPlayer;)Z");
+			MethodNode method = getMethod(dyeClass, "applyBonemeal",
+					getName(className, "(Lnet/minecraft/item/ItemStack;Lnet/minecraft/world/World;IIILnet/minecraft/entity/player/EntityPlayer;)Z",
+							"(Lyd;Labv;IIILue;)Z"));
+			if(method == null) {
+				System.out.println("Mapping bug detected! Listing methods: ");
+				for(MethodNode methodd: dyeClass.methods)
+					System.out.println("- " + methodd.name + methodd.desc);
+				return writeBytecode(dyeClass);
+			}
 			int step = 0;
 			Iterator<AbstractInsnNode> i = method.instructions.iterator();
 			while(i.hasNext()) {
