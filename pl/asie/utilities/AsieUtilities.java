@@ -11,6 +11,7 @@ import pl.asie.utilities.lib.PacketSender;
 import pl.asie.utilities.skin.CommandSkinReload;
 import pl.asie.utilities.skin.SkinClassTransformer;
 import pl.asie.utilities.skin.SkinHandler;
+import pl.asie.utilities.tweaks.BoneMealClassTransformer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.launchwrapper.LaunchClassLoader;
@@ -43,6 +44,10 @@ public class AsieUtilities extends AsieMod {
     	skinURL = config.get("skin", "skinURL", "http://skins.minecraft.net/MinecraftSkins/%s.png").getString();
     	capeURL = config.get("skin", "capeURL", "http://skins.minecraft.net/MinecraftCloaks/%s.png").getString();
     	SkinHandler.setup(skinURL, capeURL);
+    	
+    	BoneMealClassTransformer.finish(config.get("misc", "bonemealTreeChance", 0.45D).getDouble(0.45D),
+    			config.get("misc", "bonemealMushroomChance", 0.4D).getDouble(0.4D),
+    			!config.get("misc", "requireTwoBonemealHits", true).getBoolean(true));
     	
     	if(config.get("books", "dyedWrittenBooks", true).getBoolean(true)) {
     		itemDyedBook = this.registerItem(ItemDyedEditableBook.class, "asieutils.dyedEditableBook", 17540);

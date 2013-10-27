@@ -4,6 +4,7 @@ import java.util.Map;
 
 import pl.asie.utilities.interop.InteropClassTransformer;
 import pl.asie.utilities.skin.SkinClassTransformer;
+import pl.asie.utilities.tweaks.BoneMealClassTransformer;
 import cpw.mods.fml.relauncher.IFMLLoadingPlugin;
 
 public class AsieUtilitiesLoadingPlugin implements IFMLLoadingPlugin {
@@ -11,7 +12,9 @@ public class AsieUtilitiesLoadingPlugin implements IFMLLoadingPlugin {
 	@Override
 	public String[] getASMTransformerClass() {
 		return new String[]{SkinClassTransformer.class.getName(),
-				InteropClassTransformer.class.getName()};
+				//InteropClassTransformer.class.getName(),
+				BoneMealClassTransformer.class.getName()
+		};
 	}
 	
 	@Override
